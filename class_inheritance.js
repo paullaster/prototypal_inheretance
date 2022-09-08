@@ -24,18 +24,20 @@ class Student extends Users{
     registerStudent(){
        return this.feeBal = this.totalFee
     }
-    studentRecords(){
-        const userdetails = super.getUserDetails();
-        this.feeBal = this.registerStudent();
-        console.log(`${userdetails}, email: ${this.email},
-         registration number: ${this.reg}  Fee Balance: $${this.feeBal}`);
+    
+    payFee(amount){
+        return this.feePaid = this.feePaid + amount;
     }
     checkFeeBal(){
-        console.log(`${this.username}\`s  fee balance is : $${this.feeBal}`);
-    }
-    payFee(amount){
-        this.feePaid = amount;
+        //this.feePaid = this.payFee(amount);
         this.feeBal = this.totalFee - this.feePaid;
+        console.log(`${this.username}\`s  fee balance is : $${this.feeBal}`);
+        return this.feeBal;
+    }
+    studentRecords(){
+        const userdetails = super.getUserDetails();
+        console.log(`${userdetails}, email: ${this.email},
+         registration number: ${this.reg}  Fee Balance: $${this.feeBal}`);
     }
 }
 
@@ -47,5 +49,6 @@ cee.getUserDetails();
 
 //Creating new student
 let std1 = new Student('Cynthia', 'Cee@123$', 'cee@school.io', 'sst-123-001/2019');
-std1.studentRecords();
+std1.payFee(250);
 std1.checkFeeBal();
+std1.studentRecords();
